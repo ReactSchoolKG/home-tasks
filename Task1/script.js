@@ -8,10 +8,9 @@ function getNumber() {
     }
 }
 function makeRed() {
-    // if (this.style.backgroundColor === 'red') {
-    //     this.setAttribute('style', 'background-color: blue;');
-    //     console.log(this);
-    // }
-    this.style.backgroundColor = 'red';
-    
+    if (this.style.backgroundColor === 'red') {
+        this.setAttribute('style', 'background-color: blue;');
+    } else {
+        this.style.backgroundColor = 'red';
+    }
 }
