@@ -1,5 +1,5 @@
-let roundBlock = document.getElementsByTagName('body');
-roundBlock[0].addEventListener('click', getNumber, false);
+let body = document.getElementsByTagName('body');
+body[0].addEventListener('click', getNumber, false);
 function getNumber() {    
     let targetElement = event.target;
     if(targetElement.hasAttribute('class')) {
