@@ -1,0 +1,28 @@
+body{
+	display: flex;
+	justify-content:center;
+}
+div{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	background-color: #22745b;
+	color: white;
+	width: 600px;
+	height: 300px;
+	flex-direction: column;
+}
+p{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	background-color: #fff;
+	color: #22745b;
+	width: 300px;
+	height: 150px;
+	flex-direction: column;
+}
+button{
+	display: flex;
+	justify-content:center;
+}
