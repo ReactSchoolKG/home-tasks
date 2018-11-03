@@ -1,12 +1,14 @@
-var lastPressed;
+var obj = {
+    timesClicked: 0
+};
 
 document.body.addEventListener("click",
     (event) => {
-        lastPressed = event.target.textContent;
-        logLastPressed();        
+        clicked.call(obj);
+        console.log("Text: ", event.target.textContent);       
     }
 );
 
-function logLastPressed() {
-    console.log(this.lastPressed);
+function clicked() {
+    console.log("Times clicked:", ++this.timesClicked);
 }
