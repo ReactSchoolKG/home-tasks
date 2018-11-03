@@ -1,0 +1,11 @@
+div {
+    background-color: crimson;
+}
+
+p {
+    background-color: lightgreen;
+}
+
+* {
+    padding: 50px;
+}
