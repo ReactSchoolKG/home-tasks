@@ -1,3 +1,4 @@
+;(function(){
 window.sumClicedElements = 0;
 
 $(document).ready(function(){
@@ -16,9 +17,10 @@ $(document).ready(function(){
     })
 });
 
-function summator (n){
-    this.sumClicedElements += n;
-    let message = `clicked sum equal: ${this.sumClicedElements}`
-    console.log(message)
+function summator (currNumber){
+    this.sumClicedElements += currNumber;
+    let message = `clicked sum equal: ${this.sumClicedElements}`;
+    console.log(message);
     document.getElementById("counter").innerText = message;
 }
+})();
