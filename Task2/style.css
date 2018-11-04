@@ -1,19 +1,26 @@
 body {
     /* Width and height only for styling */
     width: 960px;
-    height: 1000px;
+    min-height: 1000px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    cursor: pointer;
+}
+
+body:hover {
+    background-color: #f0f0f0;
 }
 
 .item {
-    width: 150px;
-    height: 100px;
-    font-size: 20px;
+    box-sizing: border-box;
+    width: 200px;
+    height: 150px;
+    padding: 15px 30px;
+    font-size: 24px;
     text-align: center;
     color: #fff;
     background: #000;
@@ -31,11 +38,37 @@ body {
     cursor: pointer;
 }
 
+.item__text {
+    font-size: 20px;
+}
+
+.item__text:hover {
+    background-color: #454545;
+}
+
+.item__text:active {
+    background-color: #353535;
+}
+
 .item__button {
-    padding: 10px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     color: #000;
     background: #fff;
     cursor: pointer;
     border: none;
 }
 
+.item__button:hover {
+    color: #fafafa;
+    background-color: #707070;
+}
+
+.item__button:active {
+    color: #fff;
+    background-color: #505050;
+}
