@@ -1,15 +1,26 @@
-let elems = document.querySelectorAll('div, p, button');
-let body = document.querySelector("body");
-let div = document.querySelector("div");
+;(function(){
+  window.sumClicedElements = 0;
 
-for (let i = 0; i < elems.length; i++) {
-  elems[i].addEventListener("click", highlightThis, true);
-  elems[i].addEventListener("click", highlightThis, false);
-}
+  $(document).ready(function(){
+      $(".circle__item").on({
+          click:function(){
+              let number = +$(this).text();
+              console.log(number)
+              summator.call(null, number);
+          },
+          mouseenter: function() {
+              $(this).css({"background-color": "#091D34", "font-size": "150%"})
+          },
+          mouseleave: function() {
+              $(this).css({"background-color": "#1461B8", "font-size": "100%"})
+          }
+      })
+  });
 
-body.addEventListener("click", ()=>{alert("Event on body")}, false);
-div.addEventListener("click", (event)=> event.stopPropagation());
-
-function highlightThis(event){
-    alert(`event on: ${this.tagName}, current target: ${event.target.tagName}`)
-}
+  function summator (currNumber){
+      this.sumClicedElements += currNumber;
+      let message = `clicked sum equal: ${this.sumClicedElements}`;
+      console.log(message);
+      document.getElementById("counter").innerText = message;
+  }
+})();
