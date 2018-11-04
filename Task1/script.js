@@ -1,22 +1,27 @@
 var bodyElem = document.getElementsByTagName('body')[0];
 
-bodyElem.onclick = function(event) {
+bodyElem.addEventListener("click", clickElem);
+bodyElem.addEventListener("mousedown", dragElem);
+
+function clickElem(event){
 	if (event.target.nodeName != 'DIV') return;
 	console.log(event.target.innerText);
 }
 
-bodyElem.onmousedown = function(event) {
+function dragElem(event){
 	if (event.target.nodeName != 'DIV') return;
-	onDrag.bind(event, event.target)();
+	onDrag.bind(event.target, event)();
 }
 
-function onDrag(elementToDrag) {
+//Drag & Drop function
+function onDrag(e) {
+	var dragElem = this;
 
-	var startX = this.clientX,
-		startY = this.clientY;
+	var startX = e.clientX,
+		startY = e.clientY;
 
-	var origX = elementToDrag.style.left.slice(0, -2),
-		origY = elementToDrag.style.top.slice(0, -2);
+	var origX = dragElem.style.left.slice(0, -2),
+		origY = dragElem.style.top.slice(0, -2);
 
 	var deltaX = startX - origX,
 		deltaY = startY - origY;
@@ -25,14 +30,14 @@ function onDrag(elementToDrag) {
 	document.addEventListener("mouseup", upHandler, true);
 
 	function moveHandler(e) {
-		elementToDrag.style.left = (e.clientX - deltaX) + "px";
-		elementToDrag.style.top = (e.clientY - deltaY) + "px";
-		elementToDrag.style.opacity = '0.5'
+		dragElem.style.left = (e.clientX - deltaX) + "px";
+		dragElem.style.top = (e.clientY - deltaY) + "px";
+		dragElem.style.opacity = '0.5'
 	}
 
-	function upHandler(e) {
+	function upHandler() {
 		document.removeEventListener("mouseup", upHandler, true);
 		document.removeEventListener("mousemove", moveHandler, true);
-		elementToDrag.style.opacity = '1'
+		dragElem.style.opacity = '1'
 	}
 }
