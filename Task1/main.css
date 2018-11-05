@@ -1,0 +1,15 @@
+.circle{
+  display:flex;
+  justify-content: center;
+  flex-wrap:wrap;
+  width:100%;
+}
+.circle div{
+  background: gray;
+  border: 3px solid black;
+  border-radius: 100%;
+  font-size: 100px;
+  position:relative;
+  width:18%;
+  text-align:center;
+}
