@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo list</title>
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+</head>
+<body>
+    <section class="main">
+        <div class="items-container">
+            <div class="items-content">
+                <h1>
+                    Todo List
+                </h1>
+                <ul id="todo-items">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </div>
+        </div>
+        <button class="clear-btn" onclick="itemsHelper.clearStorage();">Clear Storage</button>
+        <button class="clear-btn" onclick="itemsHelper.fullFillRandomData();">Mock Items</button>
+    </section>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/items.js"></script>
+</body>
+</html>

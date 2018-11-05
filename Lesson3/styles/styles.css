@@ -1,0 +1,9 @@
+.items-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+li.completed {
+    text-decoration: line-through;
+}
