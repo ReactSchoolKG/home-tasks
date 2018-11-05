@@ -1,0 +1,23 @@
+body{
+  display: flex;
+  justify-content:center;
+}
+
+ div{
+  display: flex;
+	justify-content:center;
+  align-items:center;
+  background-color: #6e6dc5;
+	width: 250px;
+	height: 250px;
+}
+
+
+p{
+  display: flex;
+	justify-content:center;
+	align-items:center;
+  width: 150px;
+  height: 150px;
+  background-color: yellow;
+}
