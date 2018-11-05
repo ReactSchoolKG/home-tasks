@@ -1,0 +1,26 @@
+body {
+	width: 100%;
+	font-size: 25px;
+	color: white;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.circle {
+width: 200px;
+height: 200px;
+background: darkorange;
+-moz-border-radius: 100px;
+-webkit-border-radius: 100px; 
+border-radius: 100px;
+}
+
+.circle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
