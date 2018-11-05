@@ -1,0 +1,32 @@
+body {
+	width: 100%;
+	font-size: 25px;
+	color: white;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.item {
+    width: 150px;
+    height: 200px;
+    background: yellow;
+    
+    color: darkblue;
+    font-size: 30px;
+
+    border-radius: 50%;
+}
+
+.item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+
