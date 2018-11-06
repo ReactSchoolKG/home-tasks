@@ -19,7 +19,7 @@ const showMessage = (stopPropagation = false, color = `black`, event) => {
 /**
  * Bind for all elements eventListener
  * @param {Array} elements - this is array of elements
- * @param {Boolea} stopPropagation - if true then put stopPropagation 
+ * @param {Boolean} stopPropagation - if true then put stopPropagation 
  * @param {Object} event
  */
 const bind = (elements, stopPropagation = false) => {
