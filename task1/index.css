@@ -1,0 +1,20 @@
+body {
+	background-color: #83CFFF;
+}
+
+.div-style {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	background-color: #F7941F;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+}
+
+.div-main {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}

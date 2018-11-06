@@ -1,0 +1,43 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+
+
+<head>
+	<meta charset="utf-8"">
+
+	<title>Сайт</title>
+
+	<script>
+		this.arr = [];
+		function showNumber(item) {
+			this.arr.push(item);
+			console.log(item);
+			console.log(this.arr);
+		}
+	</script>
+	<link href="index.css"
+		rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div class="div-main">
+		<div class="div-style" id="1" onclick="showNumber(id)">1</div>
+		<div class="div-style" id="2" onclick="showNumber(id)">2</div>
+		<div class="div-style" id="3" onclick="showNumber(id)">3</div>
+		<div class="div-style" id="4" onclick="showNumber(id)">4</div>
+		<div class="div-style" id="5" onclick="showNumber(id)">5</div>
+	</div>
+	<div class="div-main">
+		<div class="div-style" id="6" onclick="showNumber(id)">6</div>
+		<div class="div-style" id="7" onclick="showNumber(id)">7</div>
+		<div class="div-style" id="8" onclick="showNumber(id)">8</div>
+		<div class="div-style" id="9" onclick="showNumber(id)">9</div>
+		<div class="div-style" id="10" onclick="showNumber(id)">10</div>
+	</div>
+</body>
+</html>
