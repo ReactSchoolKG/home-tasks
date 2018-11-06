@@ -4,19 +4,19 @@ let pBlock = document.getElementsByTagName('p');
 let buttonBlock = document.getElementsByTagName('button');
 
 bodyBlock[0].addEventListener('click', alertMessage, false);
-divBlock[0].addEventListener('click', getInfoOne, true);
-divBlock[0].addEventListener('click', getInfoTwo, false);
-pBlock[0].addEventListener('click', getInfoOne, true);
-pBlock[0].addEventListener('click', getInfoTwo, false);
-buttonBlock[0].addEventListener('click', getInfoOne, true);
-buttonBlock[0].addEventListener('click', getInfoTwo, false);
+divBlock[0].addEventListener('click', capturingFunction, true);
+divBlock[0].addEventListener('click', bubblingFunction, false);
+pBlock[0].addEventListener('click', capturingFunction, true);
+pBlock[0].addEventListener('click', bubblingFunction, false);
+buttonBlock[0].addEventListener('click', capturingFunction, true);
+buttonBlock[0].addEventListener('click', bubblingFunction, false);
 
-function getInfoOne() {
+function capturingFunction() {
     let eventTarget = event.target;
     console.log(`This is Capture! Event target: ${eventTarget.getAttribute('id')}, this: ${this.getAttribute('id')}`);
 }
 
-function getInfoTwo() {
+function bubblingFunction() {
     let eventTarget = event.target;
     if(this == divBlock[0]) {
         event.stopPropagation();
