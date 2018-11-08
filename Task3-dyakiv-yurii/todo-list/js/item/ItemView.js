@@ -8,12 +8,14 @@ class ItemView {
     bindButtons() {
         const clearStorage = document.querySelector(`.clear-storage`);
         const mockElement = document.querySelector(`.mock-element`);
+        const newElement = document.querySelector(`.new-element`);
        
-        clearStorage.onclick = this.doClearStorage.bind(this);
+        clearStorage.onclick = this.clearStorageHandler.bind(this);
         mockElement.onclick = this.doMockElement.bind(this);
+        newElement.onclick = this.openForm.bind(this);
     }
 
-    doClearStorage() {
+    clearStorageHandler() {
         this.eventEmitter.emit(`clearStorage`);
     }
 
@@ -21,10 +23,41 @@ class ItemView {
         this.eventEmitter.emit(`pushMockElement`);
     }
 
+    openForm() {
+        const form = document.querySelector(`.form`);
+        form.onsubmit = function() {
+            event.preventDefault();
+        };
+
+        const changeOpenState = () => {
+            if (form.classList.contains(`closed`)) { 
+                form.classList.remove(`closed`);
+                form.classList.add(`open`);
+    
+            } else {
+                form.classList.remove(`open`);
+                form.classList.add(`closed`);
+            }
+        }
+        changeOpenState();
+
+        const closeFormButton = document.querySelector(`.form__close`);
+        closeFormButton.onclick = function() {
+            changeOpenState();
+        };
+
+        const formSubmitElement = document.querySelector(`.form__submit`);
+        const self = this;
+        formSubmitElement.onclick = function() {
+            const inputElement = document.querySelector(`.form__task`);
+            self.eventEmitter.emit(`newTask`, inputElement.value);
+        };
+    }
+
     changeDone() {
         const currentElement = event.currentTarget;
-        if(!currentElement.classList.contains(`list--item--done`)) {
-            currentElement.classList.add(`list--item--done`);
+        if(!currentElement.classList.contains(`item__text--done`)) {
+            currentElement.classList.add(`item__text--done`);
         };
         this.eventEmitter.emit(`setDone`, event.currentTarget.parentNode.dataset.key)
     }
@@ -35,7 +68,6 @@ class ItemView {
         this.eventEmitter.emit(`deleteElement`, liElement.dataset.key);
     }
     
-
     /**
      * Render all element
      * @param {Array} list - take a list of elements
@@ -43,15 +75,15 @@ class ItemView {
     renderItems(list) {
         const ulElement = document.querySelector(`.list`);
         const fragment = document.createDocumentFragment();
-        
+
         list.forEach((element) => {
             const liELement = document.createElement(`li`);
-            liELement.className = `list--item`;
+            liELement.className = `list__item item`;
             liELement.dataset.key = element.key;
 
             const pElement = document.createElement(`p`);
             pElement.textContent = element.title;
-            element.done === true ? pElement.className = `item--text list--item--done` : pElement.className = `item--text`;
+            element.done === true ? pElement.className = `item__text item__text--done` : pElement.className = `item__text`;
             pElement.onclick = this.changeDone.bind(this);
 
             const buttonElement = document.createElement(`button`);

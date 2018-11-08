@@ -11,7 +11,15 @@ class ItemModel {
      * Return new mock elements
      */
     getMockElements() {
-        return someStorage;
+        if(this.storage.length === 0) {
+            return someStorage;
+        } else {
+            const newMocks = someStorage.map((element, index) => {
+                element.key = this.storage[this.storage.length-1].key + Math.floor(this.storage[this.storage.length-1].key / 2 + index);
+                return element;
+            });
+            return newMocks;
+        }
     }
 
     /**
@@ -50,8 +58,6 @@ class ItemModel {
         this._updateLocalStorage();
     }
 
-
-
     /**
      * Get state from localStorage
      * @param {Object} locStorage 
@@ -77,5 +83,24 @@ class ItemModel {
     clearLocalStorage() {
         window.localStorage.removeItem(`li`);
         this.storage = [];
+    }
+
+    /**
+     * Create new task
+     * @param {String} value - task's text
+     */
+    createElement(value) {
+        let findKey = this.storage.length > 0 
+            ? this.storage[this.storage.length-1].key + Math.floor(this.storage[this.storage.length-1].key / 2 + 1) 
+            : 0;
+
+        const newEllement = {
+            title: `${value}`,
+            done: false,
+            key: findKey
+        };
+        this.storage.push(newEllement);
+        this._updateLocalStorage();
+        return newEllement;
     }
 }

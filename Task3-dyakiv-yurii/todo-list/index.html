@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Testing You dont't know JS</title>
+    <title>ToDo List</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,13 +19,13 @@
     <div class="flex-container">
         <button class="button clear-storage" type="button">Clear Storage</button>
         <button class="button mock-element" type="button">Mock Element</button>
-        <button class="button mock-element" type="button">New Element</button>
+        <button class="button new-element" type="button">New Element</button>
     </div>
 
-    <form class="form" action="#" method="POST">
+    <form class="form closed" action="#" method="POST">
         <h3 class="form__title">Add new element</h3>
-        <input class="task" type="text" name="task" placeholder="New task">
-        <button class="button form__submit" type="submit">Add</button>
+        <input class="form__task" type="text" name="task" placeholder="New task">
+        <button class="button form__submit" type="button">Add</button>
         <button class="button form__close" type="button">Close form</button>
     </form>
 

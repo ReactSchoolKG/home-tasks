@@ -8,9 +8,10 @@ class Controller {
         this.eventEmitter.on(`pushMockElement`, this.pushMockElement.bind(this));
         this.eventEmitter.on(`deleteElement`, this.deleteElement.bind(this));
         this.eventEmitter.on(`setDone`, this.setDone.bind(this));
+        this.eventEmitter.on(`newTask`, this.setTask.bind(this));
+
         this.initialise();
     }
-
 
     initialise() {
         this.view.renderItems(this.model.getFirstState());
@@ -32,5 +33,10 @@ class Controller {
 
     setDone(key) {
         this.model.setDone(key);
+    }
+
+    setTask(value) {
+        const newElement = this.model.createElement(value);
+        this.view.renderItems([newElement]);
     }
 }
