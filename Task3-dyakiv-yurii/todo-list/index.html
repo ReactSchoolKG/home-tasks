@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing You dont't know JS</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h2 class="title">ToDo List</h2>
+
+    <ul class="list">
+    </ul>
+
+    <div class="flex-container">
+        <button class="button clear-storage" type="button">Clear Storage</button>
+        <button class="button mock-element" type="button">Mock Element</button>
+        <button class="button mock-element" type="button">New Element</button>
+    </div>
+
+    <form class="form" action="#" method="POST">
+        <h3 class="form__title">Add new element</h3>
+        <input class="task" type="text" name="task" placeholder="New task">
+        <button class="button form__submit" type="submit">Add</button>
+        <button class="button form__close" type="button">Close form</button>
+    </form>
+
+    <script src="js/mockElement.js"></script>
+    <script src="js/eventEmitter.js"></script>
+    <script src="js/item/ItemModel.js"></script>
+    <script src="js/item/ItemView.js"></script>
+    <script src="js/item/Controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
