@@ -1,0 +1,25 @@
+.container{
+    height: 254px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.container div{
+    background: gray;
+    border: 3px solid blue;
+    border-radius: 100%;
+    width: 19.5%;
+    height: 100%;
+    font-size: 48px;
+    text-align: center;
+    top: 50%;
+}
+
+.container div p{
+    position: relative;
+    width: 19%;
+    height: 20%;
+    top: 20%;
+    left: 40%
+}
