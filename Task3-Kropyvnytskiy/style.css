@@ -1,0 +1,35 @@
+*{
+	font-family: system-ui;
+}
+h1{
+	color: hsla(130,70%,30%);
+}
+section{
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+  	flex-direction:column;
+}
+li{
+	width: 400px;
+	list-style:none;
+	margin:5px 50px 5px 10px;
+	padding: 10px;
+	background-color:hsla(120,100%,75%,0.3);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction:row;
+}
+#input{
+	width: 400px;
+    border: 1px solid black;
+    padding: 2px;
+}
+.buttons{
+	margin:10px;
+}
+.doneTask{
+	text-decoration: line-through;
+	background-color:hsla(130,70%,30%,0.3);
+}
