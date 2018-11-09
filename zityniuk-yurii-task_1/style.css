@@ -1,0 +1,38 @@
+body{
+    background-color:#D4EDF7
+}
+
+.circle__item{
+    width: 50px;
+    height: 50px;
+    background-color:#1461B8;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    vertical-align: middle;
+    color:rgb(255, 234, 234);
+    font-weight: bolder;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.57);
+}
+
+.circle-box{
+    width: 33.33%;
+    min-width: 250px;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-gap: 10px;
+    margin: 0 auto;
+    padding-top: 100px;
+
+}
+#counter{
+    width:200px;
+    background-color: aquamarine;
+    margin: 50px auto;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    color:rgb(30, 18, 197);
+    border-radius:10px;
+}
