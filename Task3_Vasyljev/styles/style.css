@@ -63,6 +63,20 @@ p {
     font-size: 18px;
 }
 
+.done {
+    text-decoration: line-through;
+}
+
+.added {
+    animation: addedAnim .5s ease-out;
+}
+
+.deleted {
+    transform: translateX(100px);
+    opacity: 0;
+    transition: .5s ease-out;
+}
+
 #add-item-input-wrap {
     display: flex;
     justify-content: flex-start;
@@ -102,4 +116,15 @@ p {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
+}
+
+@keyframes addedAnim {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
 }
