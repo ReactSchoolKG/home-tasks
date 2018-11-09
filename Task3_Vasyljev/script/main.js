@@ -1,6 +1,6 @@
 
 let todoListArray = [{
-    title: 'homework',
+    title: 'do my homework',
     done: false,
     id: 1
 },
@@ -75,7 +75,7 @@ function displayListItem(item) {
     let newItem = document.createElement('li');
     newItem.setAttribute('class', 'todo-list-item');
     newItem.setAttribute('id', `id="${item.title}${item.id}"`)
-    newItem.innerHTML = `<div class="item-list-point"></div> I need to ${item.title}<button class="delete-item-button"></button>`;
+    newItem.innerHTML = `<div class="item-list-point"></div> I need to ${item.title}.<button class="delete-item-button"></button>`;
     if(item.done == true) {
         newItem.classList.add('done');     
     } else {
