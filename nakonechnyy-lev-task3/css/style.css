@@ -1,0 +1,19 @@
+div button{
+    background-color: #008CBA;
+    font-size: 12px;
+    border-radius: 12px;
+    padding: 12px 28px;
+}
+#for1{
+    height: 500px;
+    width: 30%;
+    float: left;
+}
+#for2{
+    height: 500px;
+    width: 40%;
+    float: left;
+}
+#for2 ul{
+    padding: 5% 5%;
+}
