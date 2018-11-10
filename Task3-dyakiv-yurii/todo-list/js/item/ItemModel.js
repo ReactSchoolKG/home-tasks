@@ -1,6 +1,6 @@
 class ItemModel {
     constructor() {
-        this.storage = window.localStorage.length > 0 ? this._getFromLocalStorage(window.localStorage) : [];
+        this.storage = localStorage.getItem(`li`) ? this._getFromLocalStorage(localStorage) : [];
     }
 
     getFirstState() {
@@ -11,11 +11,11 @@ class ItemModel {
      * Return new mock elements
      */
     getMockElements() {
-        if(this.storage.length === 0) {
+        if (this.storage.length === 0) {
             return someStorage;
         } else {
             const newMocks = someStorage.map((element, index) => {
-                element.key = this.storage[this.storage.length-1].key + Math.floor(this.storage[this.storage.length-1].key / 2 + index);
+                element.key = this.storage[this.storage.length - 1].key + Math.floor(this.storage[this.storage.length - 1].key / 2 + index);
                 return element;
             });
             return newMocks;
@@ -36,7 +36,7 @@ class ItemModel {
      */
     removeFromCurrentStorage(key) {
         this.storage.forEach((element, index) => {
-            if(element.key == key) {
+            if (element.key == key) {
                 this.storage.splice(index, 1);
             }
         });
@@ -47,12 +47,10 @@ class ItemModel {
      * Set done true and save that
      * @param {String || Number} key - element's key 
      */
-    setDone(key) {
+    changeDone(key) {
         this.storage.forEach((element) => {
-            if(element.key === Number(key)) {
-                if(element.done == false) {
-                    element.done = true;
-                }
+            if (element.key === Number(key)) {
+                element.done == false ? element.done = true : element.done = false;
             }
         });
         this._updateLocalStorage();
@@ -72,8 +70,8 @@ class ItemModel {
      * Change state in local storage
      */
     _updateLocalStorage() {
-        if (window.localStorage != this.storage) {
-            window.localStorage.setItem(`li`, JSON.stringify(this.storage));
+        if (localStorage != this.storage) {
+            localStorage.setItem(`li`, JSON.stringify(this.storage));
         }
     }
 
@@ -81,7 +79,7 @@ class ItemModel {
      * Clear local storage
      */
     clearLocalStorage() {
-        window.localStorage.removeItem(`li`);
+        localStorage.removeItem(`li`);
         this.storage = [];
     }
 
@@ -90,8 +88,8 @@ class ItemModel {
      * @param {String} value - task's text
      */
     createElement(value) {
-        let findKey = this.storage.length > 0 
-            ? this.storage[this.storage.length-1].key + Math.floor(this.storage[this.storage.length-1].key / 2 + 1) 
+        let findKey = this.storage.length > 0
+            ? this.storage[this.storage.length - 1].key + Math.floor(this.storage[this.storage.length - 1].key / 2 + 1)
             : 0;
 
         const newEllement = {
