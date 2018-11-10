@@ -1,0 +1,160 @@
+body {
+    width: 500px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-transform: none;
+    color: #000;
+    background-color: #fff;
+}
+
+.title {
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 20px;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: rgb(255, 255, 110);
+}
+
+.list {
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 0;
+    list-style: none;
+}
+
+.list__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 15px 25px;
+    background-color: #fafafa;
+    border: 1px solid #f0f0f0;
+}
+
+.item__text {
+    display: inline-block;
+    max-width: 400px;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.item__text--done {
+    text-decoration: line-through;
+}
+
+.delete-button {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid #707070;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #f0f0f0;
+}
+
+.delete-button::before,
+.delete-button::after {
+    content: "";
+    width: 10px;
+    height: 2px;
+    position: absolute;
+    background-color: #000;
+}
+
+
+.delete-button::before {
+    transform: translateX(-5px) rotate(45deg);
+}
+.delete-button::after {
+    transform: translateX(-5px) rotate(-45deg);
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button {
+    margin: 0;
+    padding: 15px 30px;
+    font-size: 14px;
+    line-height: 20px;
+    border: none;
+    cursor: pointer;
+
+    background: rgb(255, 255, 110);
+}
+
+.clear-storage:hover,
+.mock-element:hover,
+.new-element:hover {
+    background: rgb(238, 238, 80);
+}
+
+/* -------------------------------------- */
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.closed {
+    display: none;
+}
+
+.open {
+    display: flex;
+}
+
+.form__title {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+    color: #404040;
+    background-color: rgb(255, 180, 255);
+}
+
+.form__task {
+    padding: 10px 20px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.form__submit,
+.form__close {
+    background-color: rgb(255, 180, 255);
+}
+
+.form__submit:hover,
+.form__close:hover {
+    background-color: rgb(240, 130, 240);
+}
