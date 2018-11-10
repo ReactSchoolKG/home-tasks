@@ -1,0 +1,18 @@
+body{
+	display: flex;
+	flex-flow: row wrap;
+}
+div{
+	display: flex;
+	background-color: #22745b;
+	color: white;
+	justify-content:center;
+	align-items:center;
+	font-size:50px;
+	width: 20%;
+	height: 20vw;
+	border-radius: 100%;
+	cursor: pointer;
+	position: relative;
+	user-select: none;
+}
