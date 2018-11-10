@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.block {
+    width: 19vw;
+    height: 19vw;
+    background-color: purple;
+    border-radius: 50%;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
