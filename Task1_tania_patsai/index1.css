@@ -1,0 +1,29 @@
+body {
+    box-sizing: border-box;
+    margin: 15px auto;
+}
+
+
+.container {
+    background-color: rgb(72, 196, 175);
+    color: black;
+    display: inline-block;
+    border-radius: 50%;
+    height: 19vw;
+    line-height: 19vw;
+    width: 19vw;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0.6;
+}
+
+.container:hover {
+    opacity: 1;
+}
+
+
+
+
+
+
+

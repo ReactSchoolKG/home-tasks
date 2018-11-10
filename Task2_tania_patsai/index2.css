@@ -1,0 +1,39 @@
+div {
+    background-color: rgba(201, 200, 200, 0.945);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60vw;
+    height: 30vw;
+    border-radius: 10px;
+    margin: auto;  
+    
+  }
+  
+  p {
+    background-color: white;
+    margin: auto;
+    width: 60%;
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;    
+    display: flex;
+  }
+  
+  button {
+    background-color:rgba(43, 253, 243, 0.801);    
+    border-radius: 10px;    
+    margin: 0;
+    height: 20%;
+    width: 70%;
+    opacity:0.8; 
+    
+  }
+
+  button:hover {
+    opacity:1; 
+
+  }
+  
+ 
