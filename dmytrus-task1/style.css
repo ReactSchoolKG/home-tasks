@@ -1,0 +1,70 @@
+.w-0,
+.w-1,
+.w-2,
+.w-3,
+.w-4,
+.w-5,
+.w-6,
+.w-7,
+.w-8,
+.w-9 {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	font-size: 30px;
+	color: #fff;
+	text-align: center;
+	background: #000
+}
+
+.w-0 {
+	transform: translate(-6em);
+}
+
+.w-1 {
+	transform: rotate(215deg) translate(6em) rotate(-215deg);
+}
+
+.w-2 {
+	transform: rotate(250deg) translate(6em) rotate(-250deg);
+	top: 50px;
+	position: relative;
+}
+
+.w-3 {
+	transform: rotate(290deg) translate(6em) rotate(-290deg);
+}
+
+.w-4 {
+	transform: rotate(325deg) translate(6em) rotate(-325deg);
+}
+
+.w-5 {
+	transform: translate(6em);
+}
+
+.w-6 {
+	transform: rotate(35deg) translate(6em) rotate(-35deg);
+}
+
+.w-7 {
+	transform: rotate(70deg) translate(6em) rotate(-70deg);
+}
+
+.w-8 {
+	transform: rotate(-255deg) translate(6em) rotate(255deg);
+	top: 50px;
+	position: relative;
+}
+
+.w-9 {
+	transform: rotate(-215deg) translate(6em) rotate(215deg);
+}
+
+#five div {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -2em;
+}
