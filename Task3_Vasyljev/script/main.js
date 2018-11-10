@@ -39,10 +39,6 @@ class ItemListObject {
         console.log(localStorage.getItem(namePlusId));
     }
 
-    takeFromLocalStorage() {
-        return JSON.parse(localStorage.getItem(this.title + this.id));
-    }
-
     displayListItem() {
         let newItem = document.createElement('li');
         newItem.setAttribute('class', 'todo-list-item');
