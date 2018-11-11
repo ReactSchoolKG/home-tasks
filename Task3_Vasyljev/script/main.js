@@ -20,6 +20,8 @@ let todoListArray = [{
     id: 4
 }];
 
+
+
 let ulTodoList = document.getElementById('todo-list');
 let newItemInput = document.getElementById('new-item-input');
 let addNewItemButton = document.getElementById('add-new-item-button');
@@ -34,18 +36,26 @@ class ItemListObject {
     }
 
     putInLocalStorage() {
-        let namePlusId = this.title + this.id;
-        localStorage.setItem(namePlusId, JSON.stringify(this));
-        console.log(localStorage.getItem(namePlusId));
+        let localStorageListArrayTemp = [];
+        let localStorageListArray = localStorage.getItem('localStorageListArray');
+        if(Array.isArray(localStorageListArray)) {
+            let thisStr = JSON.stringify(this);
+            localStorageListArrayTemp.push(thisStr);
+        } else {
+           localStorageListArrayTemp.push(localStorageListArray, JSON.stringify(this));          
+           if(localStorageListArrayTemp[0] == '') {
+            localStorageListArrayTemp = localStorageListArrayTemp.slice(1); 
+           }
+        }        
+        localStorage.setItem('localStorageListArray', localStorageListArrayTemp);
     }
 
     displayListItem() {
         let newItem = document.createElement('li');
         newItem.setAttribute('class', 'todo-list-item');
-        newItem.setAttribute('id', `id="${this.title}${this.id}"`)
+        newItem.setAttribute('id', `id="${this.id}"`)
         newItem.innerHTML = `<div class="item-list-point"></div> I need to ${this.title}.<button class="delete-item-button"></button>`;
         if(this.done == true) {
-            console.log('true');
             newItem.classList.add('done');     
         } else {
             newItem.classList.remove('done'); 
@@ -64,24 +74,51 @@ class ItemListObject {
         setTimeout(function() {
             parentUl.removeChild(parentLi);
         }, 400);
-        localStorage.removeItem(parentLiName);
+        let localStorageListArray = localStorage.getItem('localStorageListArray');
+        let tmp = [...localStorageListArray];
+        console.log('tmp11111' + tmp);
+        let filteredArray = localStorageListArray.filter(function(item) {
+            return item.id != parentLiName;
+        });
+        localStorage.setItem('localStorageListArray', filteredArray);
     }
     
     makeDone() {
         if(event != undefined) {
             let evTarget = event.target;
-        if(evTarget.tagName != 'BUTTON') {
-            evTarget.classList.toggle('done');
-            let doneLiName = evTarget.getAttribute('id').slice(4,-1);
-            let doneLiObj =  takeFromLocalStorage(doneLiName);
-            if (doneLiObj.done == false) {
-                doneLiObj.done = true;
-            } else {
-                doneLiObj.done = false;
+            if(evTarget.tagName != 'BUTTON') {
+                evTarget.classList.toggle('done');
+                let doneLiId = evTarget.getAttribute('id').slice(4,-1);
+                let localStorageListArray = localStorage.getItem('localStorageListArray');
+                let tmp = localStorageListArray.split(',{');
+                if(tmp[0] == '') {
+                    tmp = tmp.slice(1);
+                }
+                let tmp2 = tmp.map(function(item){
+                    if(item[0][0] == '{'){
+                        return item;
+                    } else {
+                        return '{' + item;
+                    }            
+                });
+                for(let item of tmp2) {
+                    let obj = JSON.parse(item);
+                    if (obj.id == doneLiId) {
+                        if (obj.done == false) {
+                            obj.done = true;
+                        } else {
+                            obj.done = false;
+                        }
+                        var tempObj = new ItemListObject (obj.title, obj.done, obj.id);
+                        let filteredArray = tmp2.filter(function(item) {         
+                            let obj = JSON.parse(item);
+                            return obj.id != doneLiId;
+                        });
+                        localStorage.setItem('localStorageListArray', filteredArray);
+                        tempObj.putInLocalStorage();
+                    }
+                } 
             }
-            let tempObj = new ItemListObject (doneLiObj.title, doneLiObj.done, doneLiObj.id);
-            tempObj.putInLocalStorage(); 
-        }
         }
                
     }
@@ -89,8 +126,11 @@ class ItemListObject {
 
 getActualLS();
 
+
 clearStorageButton.addEventListener('click', function() {
-    localStorage.clear();
+    let localStorageListArray = [];
+    localStorage.setItem('localStorageListArray', localStorageListArray);
+    // localStorage.clear();
     deleteAllItems();
     
 });
@@ -115,12 +155,29 @@ ulTodoList.addEventListener('click', function() {
         setTimeout(function() {
             parentUl.removeChild(parentLi);
         }, 400);
-        localStorage.removeItem(parentLiName);
+        let localStorageListArray = localStorage.getItem('localStorageListArray');
+        let tmp = localStorageListArray.split(',{');
+        if(tmp[0] == '') {
+            tmp = tmp.slice(1);
+        }
+        let tmp2 = tmp.map(function(item){
+            if(item[0][0] == '{'){
+                return item;
+            } else {
+                return '{' + item;
+            }            
+        });
+        let filteredArray = tmp2.filter(function(item) {         
+            let obj = JSON.parse(item);
+            return obj.id != parentLiName;
+        });
+        localStorage.setItem('localStorageListArray', filteredArray);
     }
 });
 
 function putInLocalStorageMainList(list) { 
-    localStorage.clear();
+    let localStorageListArray = [];
+    localStorage.setItem('localStorageListArray', localStorageListArray);
     deleteAllItems();   
     if(Array.isArray(list)) {
         for(let i = 0; i < list.length; i++) {
@@ -132,14 +189,34 @@ function putInLocalStorageMainList(list) {
 }
 
 function getActualLS() {
-    for(let item in localStorage) {
-        let obj = takeFromLocalStorage(item);
-        if(obj != null && obj.title != undefined) {
-            let itemListObject = new ItemListObject (obj.title, obj.done, obj.id);
+    if(localStorage.getItem('localStorageListArray') == undefined) {
+        console.log('No');
+        let localStorageListArray = [];
+        localStorage.setItem('localStorageListArray', localStorageListArray);
+    } else {
+        let localStorageListArray = localStorage.getItem('localStorageListArray');
+        let tmp = localStorageListArray.split(',{');
+        if(tmp[0] == '') {
+            tmp = tmp.slice(1);
+        }
+        let tmp2 = tmp.map(function(item){
+            if(item[0][0] == '{'){
+                return item;
+            } else {
+                return '{' + item;
+            }            
+        });
+        for(let item of tmp2) {
+            let tmp = JSON.parse(item);
+            let itemListObject = new ItemListObject (tmp.title, tmp.done, tmp.id);
+            
             itemListObject.displayListItem();
-       }
+        }
     }
 }
+
+
+
 
 function deleteAllItems() {
    ulTodoList.innerHTML = '';  
@@ -147,23 +224,29 @@ function deleteAllItems() {
 
 function getLastId() {
     let actualID = 1;
-    if(localStorage.length == 0) {
+    let localStorageListArray = localStorage.getItem('localStorageListArray');
+    let tmp = localStorageListArray.split(',{');
+    if(tmp[0] == '') {
+        tmp = tmp.slice(1);
+    }
+    let tmp2 = tmp.map(function(item){
+        if(item[0][0] == '{'){
+            return item;
+        } else {
+            return '{' + item;
+        }            
+    });
+    if(tmp2.length == 0) {
         return actualID;
     } else {
-        for(let item in localStorage) {
-            let obj = takeFromLocalStorage(item);
+        for(let item of tmp2) {
+            let obj = JSON.parse(item);
             if(obj != null) {                
                 if(actualID <= obj.id) {
-                    actualID = ++obj.id
+                    actualID = ++obj.id;
                 }
             }          
         }
         return actualID;
     }
-}
-
-function takeFromLocalStorage(name) {
-    let listItem = localStorage.getItem(name);
-    let itemObject = JSON.parse(listItem);
-    return itemObject;
 }
