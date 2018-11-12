@@ -20,8 +20,6 @@ let todoListArray = [{
     id: 4
 }];
 
-
-
 let ulTodoList = document.getElementById('todo-list');
 let newItemInput = document.getElementById('new-item-input');
 let addNewItemButton = document.getElementById('add-new-item-button');
@@ -64,24 +62,6 @@ class ItemListObject {
         newItem.classList.add('added');
         newItem.addEventListener('click', this.makeDone);
     }
-
-    deleteItem() {
-        let deleteButtun = event.target;
-        parentLi = deleteButtun.parentNode;
-        parentLi.classList.add('deleted');
-        parentLiName =  parentLi.getAttribute('id').slice(4,-1);
-        parentUl = parentLi.parentNode;   
-        setTimeout(function() {
-            parentUl.removeChild(parentLi);
-        }, 400);
-        let localStorageListArray = localStorage.getItem('localStorageListArray');
-        let tmp = [...localStorageListArray];
-        console.log('tmp11111' + tmp);
-        let filteredArray = localStorageListArray.filter(function(item) {
-            return item.id != parentLiName;
-        });
-        localStorage.setItem('localStorageListArray', filteredArray);
-    }
     
     makeDone() {
         if(event != undefined) {
@@ -89,19 +69,8 @@ class ItemListObject {
             if(evTarget.tagName != 'BUTTON') {
                 evTarget.classList.toggle('done');
                 let doneLiId = evTarget.getAttribute('id').slice(4,-1);
-                let localStorageListArray = localStorage.getItem('localStorageListArray');
-                let tmp = localStorageListArray.split(',{');
-                if(tmp[0] == '') {
-                    tmp = tmp.slice(1);
-                }
-                let tmp2 = tmp.map(function(item){
-                    if(item[0][0] == '{'){
-                        return item;
-                    } else {
-                        return '{' + item;
-                    }            
-                });
-                for(let item of tmp2) {
+                let localStorageListArray = takeFronLocalStorage();
+                for(let item of localStorageListArray) {
                     let obj = JSON.parse(item);
                     if (obj.id == doneLiId) {
                         if (obj.done == false) {
@@ -110,7 +79,7 @@ class ItemListObject {
                             obj.done = false;
                         }
                         var tempObj = new ItemListObject (obj.title, obj.done, obj.id);
-                        let filteredArray = tmp2.filter(function(item) {         
+                        let filteredArray = localStorageListArray.filter(function(item) {         
                             let obj = JSON.parse(item);
                             return obj.id != doneLiId;
                         });
@@ -126,11 +95,9 @@ class ItemListObject {
 
 getActualLS();
 
-
 clearStorageButton.addEventListener('click', function() {
     let localStorageListArray = [];
     localStorage.setItem('localStorageListArray', localStorageListArray);
-    // localStorage.clear();
     deleteAllItems();
     
 });
@@ -155,19 +122,8 @@ ulTodoList.addEventListener('click', function() {
         setTimeout(function() {
             parentUl.removeChild(parentLi);
         }, 400);
-        let localStorageListArray = localStorage.getItem('localStorageListArray');
-        let tmp = localStorageListArray.split(',{');
-        if(tmp[0] == '') {
-            tmp = tmp.slice(1);
-        }
-        let tmp2 = tmp.map(function(item){
-            if(item[0][0] == '{'){
-                return item;
-            } else {
-                return '{' + item;
-            }            
-        });
-        let filteredArray = tmp2.filter(function(item) {         
+        let localStorageListArray = takeFronLocalStorage();
+        let filteredArray = localStorageListArray.filter(function(item) {         
             let obj = JSON.parse(item);
             return obj.id != parentLiName;
         });
@@ -194,29 +150,14 @@ function getActualLS() {
         let localStorageListArray = [];
         localStorage.setItem('localStorageListArray', localStorageListArray);
     } else {
-        let localStorageListArray = localStorage.getItem('localStorageListArray');
-        let tmp = localStorageListArray.split(',{');
-        if(tmp[0] == '') {
-            tmp = tmp.slice(1);
-        }
-        let tmp2 = tmp.map(function(item){
-            if(item[0][0] == '{'){
-                return item;
-            } else {
-                return '{' + item;
-            }            
-        });
-        for(let item of tmp2) {
+        let localStorageListArray = takeFronLocalStorage();
+        for(let item of localStorageListArray) {
             let tmp = JSON.parse(item);
-            let itemListObject = new ItemListObject (tmp.title, tmp.done, tmp.id);
-            
+            let itemListObject = new ItemListObject (tmp.title, tmp.done, tmp.id);            
             itemListObject.displayListItem();
         }
     }
 }
-
-
-
 
 function deleteAllItems() {
    ulTodoList.innerHTML = '';  
@@ -224,6 +165,24 @@ function deleteAllItems() {
 
 function getLastId() {
     let actualID = 1;
+    let localStorageListArray = takeFronLocalStorage();
+    if(localStorageListArray.length == 0) {
+        return actualID;
+    } else {
+        for(let item of localStorageListArray) {
+            let obj = JSON.parse(item);
+            if(obj != null) {                
+                if(actualID <= obj.id) {
+                    actualID = ++obj.id;
+                }
+            }          
+        }
+        return actualID;
+    }
+}
+
+
+function takeFronLocalStorage() {
     let localStorageListArray = localStorage.getItem('localStorageListArray');
     let tmp = localStorageListArray.split(',{');
     if(tmp[0] == '') {
@@ -236,17 +195,5 @@ function getLastId() {
             return '{' + item;
         }            
     });
-    if(tmp2.length == 0) {
-        return actualID;
-    } else {
-        for(let item of tmp2) {
-            let obj = JSON.parse(item);
-            if(obj != null) {                
-                if(actualID <= obj.id) {
-                    actualID = ++obj.id;
-                }
-            }          
-        }
-        return actualID;
-    }
+    return tmp2;
 }
