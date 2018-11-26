@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 20px;
+}
+
+.crossed {
+  text-decoration: line-through;
+}
+
+div#list {
+  padding: 10px;
+}
+
+#input-holder {
+  width: 50vw;
+  margin: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  width: fit-content;
+  padding: 7px;
+}
+
+#deleteButton {
+    margin: 0 5px;
+}
+
+#list {
+  width: 100%;
+  min-height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#heading {
+color: rgba(68, 68, 68, 0.795);
+  text-align: center; 
+  border-bottom: 1px solid rgb(161, 161, 161);
+  padding-bottom: 7px;
+  width:50vw;
+  margin: auto;
+}
