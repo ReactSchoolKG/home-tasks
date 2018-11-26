@@ -2,12 +2,16 @@
 // a new objects which will be created with using the constructor
 
 const listClick = [];
+const allDiv = [...document.querySelectorAll(`div`)];
 
-const logElement = () => {
-    const element = Number(event.currentTarget.textContent);
+allDiv.forEach((element) => {
     console.log(element);
-    addClick(element, listClick);
-};
+    element.onclick = function (event) {
+        const element = Number(event.currentTarget.textContent);
+        console.log(element);
+        addClick(element, listClick);
+    };
+});
 
 /**
  * Will push a new object with click state into an array

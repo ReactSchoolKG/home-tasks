@@ -7,7 +7,7 @@ class Controller {
         this.eventEmitter.on(`clearStorage`, this.clearStorage.bind(this));
         this.eventEmitter.on(`pushMockElement`, this.pushMockElement.bind(this));
         this.eventEmitter.on(`deleteElement`, this.deleteElement.bind(this));
-        this.eventEmitter.on(`setDone`, this.setDone.bind(this));
+        this.eventEmitter.on(`changeDone`, this.changeDone.bind(this));
         this.eventEmitter.on(`newTask`, this.setTask.bind(this));
 
         this.initialise();
@@ -19,7 +19,7 @@ class Controller {
 
     clearStorage() {
         this.model.clearLocalStorage();
-    } 
+    }
 
     pushMockElement() {
         const elem = this.model.getMockElements();
@@ -31,8 +31,8 @@ class Controller {
         this.model.removeFromCurrentStorage(key);
     }
 
-    setDone(key) {
-        this.model.setDone(key);
+    changeDone(key) {
+        this.model.changeDone(key);
     }
 
     setTask(value) {

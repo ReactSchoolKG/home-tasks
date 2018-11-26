@@ -9,7 +9,7 @@ class ItemView {
         const clearStorage = document.querySelector(`.clear-storage`);
         const mockElement = document.querySelector(`.mock-element`);
         const newElement = document.querySelector(`.new-element`);
-       
+
         clearStorage.onclick = this.clearStorageHandler.bind(this);
         mockElement.onclick = this.doMockElement.bind(this);
         newElement.onclick = this.openForm.bind(this);
@@ -25,15 +25,15 @@ class ItemView {
 
     openForm() {
         const form = document.querySelector(`.form`);
-        form.onsubmit = function() {
+        form.onsubmit = function (event) {
             event.preventDefault();
         };
 
         const changeOpenState = () => {
-            if (form.classList.contains(`closed`)) { 
+            if (form.classList.contains(`closed`)) {
                 form.classList.remove(`closed`);
                 form.classList.add(`open`);
-    
+
             } else {
                 form.classList.remove(`open`);
                 form.classList.add(`closed`);
@@ -42,32 +42,33 @@ class ItemView {
         changeOpenState();
 
         const closeFormButton = document.querySelector(`.form__close`);
-        closeFormButton.onclick = function() {
+        closeFormButton.onclick = function () {
             changeOpenState();
         };
 
         const formSubmitElement = document.querySelector(`.form__submit`);
         const self = this;
-        formSubmitElement.onclick = function() {
+        formSubmitElement.onclick = function () {
             const inputElement = document.querySelector(`.form__task`);
             self.eventEmitter.emit(`newTask`, inputElement.value);
+            inputElement.value = ``;
         };
     }
 
-    changeDone() {
+    changeDone(event) {
         const currentElement = event.currentTarget;
-        if(!currentElement.classList.contains(`item__text--done`)) {
-            currentElement.classList.add(`item__text--done`);
-        };
-        this.eventEmitter.emit(`setDone`, event.currentTarget.parentNode.dataset.key)
+        !currentElement.classList.contains(`item__text--done`)
+            ? currentElement.classList.add(`item__text--done`)
+            : currentElement.classList.remove(`item__text--done`);
+        this.eventEmitter.emit(`changeDone`, event.currentTarget.parentNode.dataset.key)
     }
 
-    deleteElement() {
+    deleteElement(event) {
         const liElement = event.target.parentNode;
         liElement.remove();
         this.eventEmitter.emit(`deleteElement`, liElement.dataset.key);
     }
-    
+
     /**
      * Render all element
      * @param {Array} list - take a list of elements
